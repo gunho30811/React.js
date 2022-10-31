@@ -1,0 +1,23 @@
+Props->React.js를 이용시에 제대로 된 데이터를 보냈는지
+확인하기 위해 cdn방식으로 라이브러리를 설치하고
+만약 내가 컴포넌트 이름이 Btn 이고 거기에 사용할
+변수가 text 라고 하자 그리고 text에는 항상 string 이 오게
+하고 싶으면
+
+일단 
+Btn.propTypes = {
+	text:PropTypes.string.isRequired
+}
+로 설정하자. Btn을 제외한 나머지는 무조건 저렇게 써야한다.
+propTypes라고 쓰고 text는 내가 이름 정한게 text니까 text
+PropTypes를 사용할 것이고 거기에 string 거기에
+isRequired 반드시 필수로 작성 되야 한다는 의미
+
+Memo-> React.js에서 state 부분을 다시 리로딩을 하면
+바뀌지 않는 부분도 리로딩을 하는데, 이를 방지하기위해
+
+const 내가 쓸 변수명 = React.memo(컴포넌트이름);
+을 하고
+<내가 쓸 변수명 /> 을 하면 값이 변경 되지 않는 부분은
+다시 리로딩 되지 않는 함수이다.
+
