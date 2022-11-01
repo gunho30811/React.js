@@ -40,3 +40,31 @@ const 내가 쓸 변수명 = React.memo(컴포넌트이름);
 <내가 쓸 변수명 /> 을 하면 값이 변경 되지 않는 부분은
 다시 리로딩 되지 않는 함수이다.
 
+create-react-app 으로 작업할 때의 포인트는 "분활" ,"정복"
+CSS modules!
+이전에는 css를 class,id 이름을 외우고 css에 적용했다면
+이제는 import styles from /'.css'; import를 하면
+css에 여러가지 모듈로 적용시킬 수 있다.
+<h1 className={styles.모듈이름}>Welcome<h1>
+
+state가 변화 할때, 모든 code 들도 다시 실행 된다. (리로딩)
+이것을 해결 해주는 함수는 useEffect
+import { useEffect } from "react"; 을 한 후
+useEffect(함수,[]); 를 하면 API를 딱 한 번만 호출하고
+다시는 실행 되지 않는다.
+useEffect는 두개의 인자를 갖는데,
+1번째는 우리가 실행시키고 싶은 코드였고
+2번째는 dependencies (dependencies란 react.js가 지켜보는것)
+2번째 인자가 [] 인 경우는 지켜볼 대상이 없기에 1번만 실행된다
+2번째 인자에 [keyword, counter] 같이 2개를 집어 넣을 수 있다
+이 경우는 둘 중 하나라도 인식되면 반응한다.
+
+CleanupFunction
+useEffect의 확장인데, 첫번째 인자내에 return을 넣어주면
+생성,삭제 같은 기능을 할 수 있다는 것이다.
+어떻게 하냐면, useEffect( () => {}, []);
+의 첫번째 인자에는 return을 두번째 인자에는 [] 빈 값을 넣어
+1번만 실행되게 한다. 하지만 첫번째 인자에 return이 있으므로
+가져오는 return을 리로딩을 하게 해준다. 그러면 그 리로딩이
+된 것이 처음 나타내는 렌더링이라면, 수정 삭제가 가능하게
+이루어지는 것이다.
