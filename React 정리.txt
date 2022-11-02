@@ -47,6 +47,11 @@ CSS modules!
 css에 여러가지 모듈로 적용시킬 수 있다.
 <h1 className={styles.모듈이름}>Welcome<h1>
 
+useState()-> 초기값을 인자로 넣어주면, State와 setState라는
+두가지 요소를 배열 형태로 리턴해준다. 
+(state명은 알맞게 설정하면 되고, 두 번째 요소에는 set을 붙임)
+const[State, setState]= useState(초기값);
+
 state가 변화 할때, 모든 code 들도 다시 실행 된다. (리로딩)
 이것을 해결 해주는 함수는 useEffect
 import { useEffect } from "react"; 을 한 후
