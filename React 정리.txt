@@ -51,6 +51,10 @@ useState()-> 초기값을 인자로 넣어주면, State와 setState라는
 두가지 요소를 배열 형태로 리턴해준다. 
 (state명은 알맞게 설정하면 되고, 두 번째 요소에는 set을 붙임)
 const[State, setState]= useState(초기값);
+변수를 재선언 하고 싶다면=state 값을 변경하려면 setState
+함수를 불러서 인자에 변경될 값을 넣어 주면 됩니다.
+setState(1); //state의 값을 1로 변경
+tip:useState는 일종의 React.js의 방어막이다.
 
 state가 변화 할때, 모든 code 들도 다시 실행 된다. (리로딩)
 이것을 해결 해주는 함수는 useEffect
@@ -73,3 +77,20 @@ useEffect의 확장인데, 첫번째 인자내에 return을 넣어주면
 가져오는 return을 리로딩을 하게 해준다. 그러면 그 리로딩이
 된 것이 처음 나타내는 렌더링이라면, 수정 삭제가 가능하게
 이루어지는 것이다.
+
+TodoList
+Event.preventDefault()
+setTodos(currentArray => [Todo, ...currentArray];
+만약 이전에 currentArray에 값이 "hello"가 있었다는 가정에
+input에 값을 입력해서 value 값(bye)이 Todo로 들어가면
+setTodos([currentArray] => ["bye",...[hello]]; 인 상황이고
+[] 내에서  ...[]은 []내에 있는 배열 값들을 밖으로 꺼내온다.
+즉 ["bye",...[hello]] 는 ["bye","hello"]로 바뀌는 것이다. 그리고
+이 것이 다시 currentArray에 들어가니 배열값은 ["bye","hello"]
+가 된다.
+
+map
+-map은 값을 받으면 전부 새로 다시 반복해준다
+(react.js에서는 map을 사용하면 element에 key를 주어야한다)
+react가 기본적 list 모든 item들을 인식
+key 는 unique
