@@ -5,8 +5,9 @@ function App() {
 	const [coins, setcoins] = useState([]);
 	const [Convert, setConvert] = useState(0);
 	const [Won, setWon] = useState(0);
+	const [symbol, setsymbol] = useState('');
 	const [Dollar, setDollar] = useState(0);
-	const kkk = Won / (Convert * 1418.29);
+	const WonChange = Won / (Convert * 1418.29);
 	const onChange = e => {
 		if (e.target.id === 'Won') {
 			setWon(e.target.value);
@@ -18,7 +19,9 @@ function App() {
 	};
 
 	const showValue = e => {
-		console.log(document.getElementById(``));
+		const index = e.target.selectedIndex;
+		console.log(e.target.childNodes[index].getAttribute('data-name'));
+		setsymbol(e.target.childNodes[index].getAttribute('data-name'));
 		console.log(e.target.value);
 		setConvert(e.target.value);
 	};
@@ -51,23 +54,25 @@ function App() {
 			<h3>Convert Price</h3>
 			<input
 				type='text'
-				value={kkk}
+				value={WonChange}
 				readOnly></input>
+			<label> {symbol}</label>
 			<h3>Current Coin Prices </h3>
 			{loading ? (
 				<strong>Loading...</strong>
 			) : (
-				<select
-					id='Coin'
-					onChange={showValue}>
-					{coins.map(coin => (
-						<option
-							key={coin.id}
-							value={coin.quotes.USD.price}
-							id={coin.symbol}>
-							{coin.name} ({coin.symbol}) : {coin.quotes.USD.price}
-						</option>
-					))}
+				<select onChange={showValue}>
+					{coins.map(coin => {
+						return (
+							<option
+								id={coin.id}
+								key={coin.id}
+								value={coin.quotes.USD.price}
+								data-name={coin.symbol}>
+								{coin.name} ({coin.symbol}) : {coin.quotes.USD.price}
+							</option>
+						);
+					})}
 				</select>
 			)}
 		</div>
