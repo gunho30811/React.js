@@ -21,15 +21,16 @@ function App() {
 				<div>
 					{movies.map(mov => (
 						<div key={mov.id}>
-							<img src={mov.medium_cover_image} />
+							<img
+								src={mov.medium_cover_image}
+								alt='MoviePicture'
+							/>
 							<h2>{mov.title}</h2>
 							<p>{mov.summary}</p>
 							<ul>
-								<li>
-									{mov.genres.map(g => (
-										<li key={g}>{g}</li>
-									))}
-								</li>
+								{mov.genres.map(g => (
+									<li key={g}>{g}</li>
+								))}
 							</ul>
 						</div>
 					))}
