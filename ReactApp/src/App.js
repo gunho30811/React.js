@@ -2,18 +2,40 @@ import { useEffect, useState } from 'react';
 
 function App() {
 	const [loading, setLoading] = useState(true);
-	const [movies, setmovies] = useState([]);
+	const [movies, setMovies] = useState([]);
+	const getMovies = async () => {
+		const json = await (await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`)).json();
+		// const json = await response.json();
+		setMovies(json.data.movies);
+		setLoading(false);
+	};
 	useEffect(() => {
-		fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`)
-			.then(response => response.json())
-			.then(json => {
-				console.log(json);
-				setmovies(json.data.movies);
-				setLoading(false);
-			});
+		getMovies();
 	}, []);
 	console.log(movies);
-	return <div>{loading ? <h1>Loading....</h1> : null}</div>;
+	return (
+		<div>
+			{loading ? (
+				<h1>Loading</h1>
+			) : (
+				<div>
+					{movies.map(mov => (
+						<div key={mov.id}>
+							<img src={mov.medium_cover_image} />
+							<h2>{mov.title}</h2>
+							<p>{mov.summary}</p>
+							<ul>
+								<li>
+									{mov.genres.map(g => (
+										<li key={g}>{g}</li>
+									))}
+								</li>
+							</ul>
+						</div>
+					))}
+				</div>
+			)}
+		</div>
+	);
 }
-
 export default App;
