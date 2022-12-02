@@ -1,0 +1,8 @@
+.홈 {
+	display: flex;
+	width: 90%;
+	height: 420px;
+	justify-content: center;
+	position: relative;
+	box-sizing: border-box;
+}
