@@ -1,42 +1,25 @@
-import { useEffect, useState } from 'react';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Detail from './routes/Detail';
+import Home from './routes/Home';
 function App() {
-	const [loading, setLoading] = useState(true);
-	const [movies, setMovies] = useState([]);
-	const getMovies = async () => {
-		const json = await (await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`)).json();
-		// const json = await response.json();
-		setMovies(json.data.movies);
-		setLoading(false);
-	};
-	useEffect(() => {
-		getMovies();
-	}, []);
-	console.log(movies);
 	return (
-		<div>
-			{loading ? (
-				<h1>Loading</h1>
-			) : (
-				<div>
-					{movies.map(mov => (
-						<div key={mov.id}>
-							<img
-								src={mov.medium_cover_image}
-								alt='MoviePicture'
-							/>
-							<h2>{mov.title}</h2>
-							<p>{mov.summary}</p>
-							<ul>
-								{mov.genres.map(g => (
-									<li key={g}>{g}</li>
-								))}
-							</ul>
-						</div>
-					))}
-				</div>
-			)}
-		</div>
+		<Router>
+			<Routes>
+				<Route
+					path='/movie/:id'
+					element={<Detail />}
+				/>
+				<Route
+					path='/'
+					element={<Home />}
+				/>
+				<Route
+					path='/hello'
+					element={<h2>hello</h2>}
+				/>
+			</Routes>
+		</Router>
 	);
 }
 export default App;
+//App.js는 이제 라우터를 통해 component들을  rendering해서 보여줄 것이다.
