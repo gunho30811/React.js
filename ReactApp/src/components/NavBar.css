@@ -1,0 +1,21 @@
+.Nav_container {
+	background-color: rgb(132, 94, 194);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 4px 64px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}
+.Nav_option,
+.Nav_icon {
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+.Nav_option li,
+.Nav_icon li {
+	padding: 4px 12px;
+}

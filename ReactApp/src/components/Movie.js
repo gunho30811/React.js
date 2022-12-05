@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import './Movie.css';
 function Movie({ id, medium_cover_image, title, summary, genres }) {
 	return (
-		<div class='grid'>
-			<img
-				src={medium_cover_image}
-				alt='MoviePicture'
-			/>
-			<h2>
-				<Link to={`/movie/${id}`}>{title}</Link>
-			</h2>
+		<div>
+			<div className='이미지와타이틀'>
+				<img
+					src={medium_cover_image}
+					alt='MoviePicture'
+				/>
+				<h2>
+					<Link to={`/movie/${id}`}>{title}</Link>
+				</h2>
+			</div>
 			<p>{summary}</p>
 			<ul>
 				{genres.map(g => (

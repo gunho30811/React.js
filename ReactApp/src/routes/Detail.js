@@ -10,6 +10,10 @@ function Detail() {
 	useEffect(() => {
 		getMovide();
 	}, [getMovide]);
-	return <h1>Detail</h1>;
+	return (
+		<div>
+			<h1>{id}</h1>
+		</div>
+	);
 }
 export default Detail;
