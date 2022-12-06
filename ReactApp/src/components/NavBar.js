@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import './NavBar.css';
-import { AppBar, Tab, Tabs, Toolbar } from '@mui/material';
+import { AppBar, Tab, Tabs, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DrawerComp from './DrawerComp';
+const PAGES = ['컨테이너1', '컨테이너2', '컨테이너3', '컨테이너4'];
+
 function NavBar() {
 	const [value, setValue] = useState();
+	const theme = useTheme();
+	console.log(theme);
+	const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+	console.log(isMatch);
 	return (
 		<React.Fragment>
 			<AppBar sx={{ background: '#845EC2' }}>
@@ -16,19 +23,30 @@ function NavBar() {
 							sx={{ fontSize: '25px' }}
 						/>
 					</Tabs>
-					<Tabs
-						sx={{ marginRight: 'auto' }}
-						textColor='white'
-						value={value}
-						onChange={(e, value) => setValue(value)}
-						indicatorColor='secondary'>
-						<Tab label='High Rating' />
-						<Tab label='컨텐트2' />
-						<Tab label='컨텐트3' />
-						<Tab label='컨텐트4' />
-					</Tabs>
-					<AccountCircleIcon />
+					{isMatch ? (
+						<>
+							<DrawerComp />
+						</>
+					) : (
+						<>
+							<Tabs
+								sx={{ marginRight: 'auto' }}
+								textColor='white'
+								value={value}
+								onChange={(e, value) => setValue(value)}
+								indicatorColor='secondary'>
+								{PAGES.map((page, idx) => (
+									<Tab
+										key={idx}
+										label={page}
+									/>
+								))}
+							</Tabs>
+							<AccountCircleIcon />
+						</>
+					)}
 				</Toolbar>
+				{/* <DrawerComp /> */}
 			</AppBar>
 		</React.Fragment>
 	);
