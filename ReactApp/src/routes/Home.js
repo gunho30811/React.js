@@ -23,7 +23,7 @@ function Home() {
 						id={mov.id}
 						medium_cover_image={mov.medium_cover_image}
 						title={mov.title}
-						summary={mov.summary}
+						// summary={mov.summary}
 						genres={mov.genres}
 					/>
 				))}

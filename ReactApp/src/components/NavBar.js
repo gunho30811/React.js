@@ -1,22 +1,36 @@
+import React, { useState } from 'react';
 import './NavBar.css';
-
+import { AppBar, Tab, Tabs, Toolbar } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function NavBar() {
+	const [value, setValue] = useState();
 	return (
-		<div>
-			<nav className='Nav_container'>
-				<div className='Nav_title'>NETFLEX</div>
-				<ul className='Nav_option'>
-					<li>컨텐트1</li>
-					<li>컨텐트2</li>
-					<li>컨텐트3</li>
-					<li>컨텐트4</li>
-				</ul>
-				<ul className='Nav_icon'>
-					<li>인스타그램</li>
-					<li>페이스북</li>
-				</ul>
-			</nav>
-		</div>
+		<React.Fragment>
+			<AppBar sx={{ background: '#845EC2' }}>
+				<Toolbar>
+					<Tabs
+						sx={{ marginRight: 'auto' }}
+						textColor='inherit'>
+						<Tab
+							label='NetFlex'
+							sx={{ fontSize: '25px' }}
+						/>
+					</Tabs>
+					<Tabs
+						sx={{ marginRight: 'auto' }}
+						textColor='white'
+						value={value}
+						onChange={(e, value) => setValue(value)}
+						indicatorColor='secondary'>
+						<Tab label='High Rating' />
+						<Tab label='컨텐트2' />
+						<Tab label='컨텐트3' />
+						<Tab label='컨텐트4' />
+					</Tabs>
+					<AccountCircleIcon />
+				</Toolbar>
+			</AppBar>
+		</React.Fragment>
 	);
 }
 
