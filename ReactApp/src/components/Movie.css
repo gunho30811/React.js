@@ -1,3 +1,11 @@
 .이미지와타이틀 {
 	text-align: center;
 }
+.홈 {
+	display: grid;
+	padding: 10px;
+	grid-gap: 10px;
+}
+.무비 {
+	margin: auto;
+}

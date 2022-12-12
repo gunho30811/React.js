@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Movie from '../components/Movie';
-import NavBar from '../components/NavBar';
 import './Home.css';
+import NavBar from '../components/NavBar';
+import { Grid } from '@mui/material';
 function Home() {
 	const [movies, setMovies] = useState([]);
 	const getMovies = async () => {
@@ -23,7 +24,7 @@ function Home() {
 						id={mov.id}
 						medium_cover_image={mov.medium_cover_image}
 						title={mov.title}
-						// summary={mov.summary}
+						summary={mov.summary}
 						genres={mov.genres}
 					/>
 				))}
