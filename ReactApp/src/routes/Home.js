@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import Movie from '../components/Movie';
 import './Home.css';
 import NavBar from '../components/NavBar';
-import { Grid } from '@mui/material';
+import Card from '../components/Card';
+// import { Grid } from '@mui/material';
 function Home() {
 	const [movies, setMovies] = useState([]);
 	const getMovies = async () => {
@@ -19,13 +20,14 @@ function Home() {
 			<NavBar />
 			<div className='홈'>
 				{movies.map(mov => (
-					<Movie
+					<Card
 						key={mov.id}
 						id={mov.id}
 						medium_cover_image={mov.medium_cover_image}
 						title={mov.title}
 						summary={mov.summary}
 						genres={mov.genres}
+						date_upload={mov.date_uploaded}
 					/>
 				))}
 			</div>

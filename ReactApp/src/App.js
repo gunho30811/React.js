@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Detail from './routes/Detail';
 import Home from './routes/Home';
+import Card from './components/Card';
 function App() {
 	return (
 		<Router>
@@ -15,7 +16,7 @@ function App() {
 				/>
 				<Route
 					path='/hello'
-					element={<h2>hello</h2>}
+					element={<Card />}
 				/>
 			</Routes>
 		</Router>

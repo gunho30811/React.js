@@ -22,7 +22,7 @@ function Movie({ id, medium_cover_image, title, summary, genres }) {
 								alt='MoviePicture'
 							/>
 							<CardContent>
-								<Link to={`/mvoie/${id}`}>
+								<Link to={`/movie/${id}`}>
 									<Typography
 										gutterBottom
 										variant='h5'
