@@ -4,7 +4,7 @@ const Box = styled.div`
 	width: 100px;
 	height: 100px;
 `;
-2. 사용법
+2. conponent 사용법
 <Box/>
 3. style 중복처리 방법
 const Circle = styled(Box)`
@@ -12,3 +12,34 @@ const Circle = styled(Box)`
 `;
 //Box의 style을 받을 수 있다.
 
+4.conponent의 태그 속성 바꾸는법
+<Box as='header'/>
+//div태그인 Box conponent가 header로 바뀌었다.
+
+5.conponent의 속성 추가 하는법
+const Box = styled.div.attrs({required:true, minLength:5})`
+	background-color: ${props => props.bgColor};
+	width: 100px;
+	height: 100px;
+`;
+// .attrs 를 붙이고 attrs({원하는 속성: 원하는 값 })
+
+6. conponent가 일반 태그를 자식(만약 span이라면)으로 갖는 경우 자식을 스타일하는 방법
+const Box=styled.div`
+ width:200px;
+ height:200px;
+ span{
+ font-size:56px;
+}
+`; 
+7. 6의 경우에 hover같은 애니메이션 style을 추가로 붙이려면?
+const Box=styled.div`
+ width:200px;
+ height:200px;
+ span{
+ font-size:56px;
+ &:hover{
+ font-size:100px;
+}
+}
+`; 
