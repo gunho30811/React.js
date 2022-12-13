@@ -1,0 +1,14 @@
+1. style conponent 만드는법.
+const Box = styled.div`
+	background-color: ${props => props.bgColor};
+	width: 100px;
+	height: 100px;
+`;
+2. 사용법
+<Box/>
+3. style 중복처리 방법
+const Circle = styled(Box)`
+	border-radius: 50px;
+`;
+//Box의 style을 받을 수 있다.
+
