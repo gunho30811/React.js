@@ -40,6 +40,44 @@ const Box=styled.div`
  font-size:56px;
  &:hover{
  font-size:100px;
-}
+ }
 }
 `; 
+8. 6,7의 경우 특정 태그를 자식으로 같는 경우가 아닌 컴포넌트를 자식으로 갖는경우(spedo selector)
+
+const Box = styled.div`
+	width: 200px;
+	height: 200px;
+	background-color: tomato;
+	animation: ${rotationAnimation} 1s linear infinite;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	${Emoji}:hover {
+		font-size: 100px;
+		color: white;
+	}
+`;
+const Emoji = styled.span`
+	font-size: 49px;
+`;
+//Emoji가 span으로 되어있긴하지만, 이거랑 하등관계없이 Emoji 라는 컴포넌트를 받으
+면 hover 되게 되어 있다.
+				<Box>
+					<Emoji>●</Emoji>
+				</Box>
+				<Emoji>@</Emoji>
+당연하게도. Box의 자식인 Emoji는 hover가 되고 자식이 아닌 Emoji는 hover되지 않는다.
+
+9.Themes //모든 색을 다 넣어둔 object
+import{ ThemeProvider} from styled-components;
+<ThemeProvider/> 
+ThemeProvider 속성 theme 으로 props가 가능함
+예시로.
+<ThemeProvider theme={darkTheme}
+<App/>
+</ThemeProvider theme>
+App이 자식으로 존재하니 App은 props를 통해 프로퍼티를 가져올 수 있다.
+const Title = styled.h1`
+color: ${props => props.theme.textColor}
+`;
