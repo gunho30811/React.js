@@ -112,3 +112,10 @@ interface CircleProp {
 const Circle = (Circleobj: CircleProp)=> `${Circleobj.bgColor}`;
 //Circle 변수에 Circleobj라는 값으로 표현하는데 표현의 타입은 CircleProp로부터 온다는 뜻.
 
+12. default props and optional props
+interface CircleProp {
+	bgColor: string;
+	borderColor?: string;
+}
+// bgColor 는 default로 반드시 있어야하는 default props 이고
+// borderColor 는 ? 를 붙여서 optional props로 바뀌었다.
