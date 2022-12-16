@@ -81,3 +81,34 @@ App이 자식으로 존재하니 App은 props를 통해 프로퍼티를 가져�
 const Title = styled.h1`
 color: ${props => props.theme.textColor}
 `;
+
+10.props?
+상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달해주는 객체.
+props.children이 역할을 수행한다.
+const Book = (props) => {
+  const { title, author, description } = props
+
+  return (
+    <article className="book">
+      <h1>{title}</h1>
+      <span>{author}</span>
+      <p>{description}</p>
+    </article>
+  )
+}
+// 
+export default Book
+
+11.interface by TypeScript
+
+-object shape(객체모양)을 TypeScript에게 타입이 뭔지 설명해주는
+TypeScript의 개념이다. 
+
+interface CircleProp {
+	bgColor: string;
+}
+//bgColor 라는 건 string 타입이라는 뜻.
+
+const Circle = (Circleobj: CircleProp)=> `${Circleobj.bgColor}`;
+//Circle 변수에 Circleobj라는 값으로 표현하는데 표현의 타입은 CircleProp로부터 온다는 뜻.
+
