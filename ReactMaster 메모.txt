@@ -119,3 +119,80 @@ interface CircleProp {
 }
 // bgColor 는 default로 반드시 있어야하는 default props 이고
 // borderColor 는 ? 를 붙여서 optional props로 바뀌었다.
+
+13.Type Script
+자바스크립트는 타입에 대한 정의 존재 하지 않음
+타입스크립트는 타입에 대한 정의가 존재.
+언어 자체에 값이 어떤 것인지, 어떤 타입인지 검사해준다.
+검사해서 실수가 있다면 코드가 멈춘다.
+const plus = (a:number,b:number) => a+b;
+
+function Dumy({text}) {
+return <h1>{text}</h1>;
+}
+//dumy 함수를 만들면 속성값으로 text를 쓰기만 하면된다.
+
+function App(){
+ return(
+ <Dumy text="hello"/>
+)
+}
+//dumy 태그의 속성값으로 text를 hello로 썼다. 값은 잘 들어갔지만 dumy 의 text의 타입이 지정되질 않았다.
+
+우리는 text의 타입을 알려줘야한다. 그래서 사용하는 것이 interface 이다.
+
+interface dumyProps{
+ text:string;
+}
+이렇게 만들어주고 
+function Dumy({text}:dumyProps) {
+return <h1>{text}</h1>;
+}
+이렇게 해주면 text의 타입이 string이라는 것을 알려준 것.
+만약 interface에 추가로 
+
+interface dumyProps{
+ text:string;
+ otherThing:string;
+}
+
+이렇게 생성해준다면.
+function Dumy({text}:dumyProps) {
+return <h1>{text}</h1>;
+}
+이곳에는 문제가 없지만, 
+function App(){
+ return(
+ <dumy text="hello"/>
+)
+}
+이곳에는  dumy에 otherThing의 속성이 없어서 prop를 보내지 않고 있어.
+상관없게 해주려면 인터페이스에
+interface dumyProps{
+ text:string;
+ otherThing?:boolean;
+}
+//?를 붙여서 상관없다는 것을 표시해주자.
+추가로 
+function Dumy({text, otherThing = false }:dumyProps) {
+return <h1>{text}</h1>;
+}
+이걸 쓴 이유는 그냥 값을 인자안에서도 넣어줄 수 있다는 것을 표시하고 싶은거뿐임
+역시나 Dumy뿐 아니라 그냥 App에서도 속성으로 true나 false 넣을 수 있음.
+
+이제 온 클릭 같은 함수를 만들어볼 거임.
+function App() {
+ const OnClick = (e: React.FormEvent<HTMLButtonElement>) => {
+console.log("hi)
+e.preventDefault();
+};
+ return(
+ <form>
+ <Dumy text="hello"/>;
+ <button onClick={Onclick}>click me </button>
+</form>
+);
+}
+//OnClick를 TypeScript로 만들었는데, 저거는 e(이벤트가)가 React의 Form 이벤트로 작용할 것이고
+HTML의 버튼 요소를 사용할 것이다. 라는 거다.
+
