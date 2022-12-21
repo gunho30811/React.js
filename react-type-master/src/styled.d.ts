@@ -6,7 +6,7 @@ declare module 'styled-components' {
 	export interface DefaultTheme {
 		textColor: string;
 		bgColor: string;
-		btnColor: string;
+		accentColor: string;
 	}
 	//styled 테마 정의
 }
