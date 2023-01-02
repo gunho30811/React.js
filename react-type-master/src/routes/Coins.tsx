@@ -13,6 +13,13 @@ const Header = styled.header`
 	justify-content: center;
 	align-items: center;
 `;
+
+const Img = styled.img`
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+`;
+
 const CoinsList = styled.ul``;
 const Coin = styled.li`
 	background-color: white;
@@ -20,9 +27,10 @@ const Coin = styled.li`
 	border-radius: 15px;
 	margin-bottom: 10px;
 	a {
+		align-items: center;
+		display: flex;
 		padding: 20px;
 		transition: color 0.2s ease-in;
-		display: block;
 	}
 	&:hover {
 		a {
@@ -72,7 +80,14 @@ function Coins() {
 				<CoinsList>
 					{coins.map(coin => (
 						<Coin key={coin.id}>
-							<Link to={`/${coin.id}`}>{coin.name}&rarr;</Link>
+							<Link
+								to={{
+									pathname: `/${coin.id}`,
+									state: { name: coin.name },
+								}}>
+								<Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} />
+								{coin.name}&rarr;
+							</Link>
 						</Coin>
 					))}
 				</CoinsList>
