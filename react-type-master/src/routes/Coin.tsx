@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { privateDecrypt } from 'crypto';
 import { Switch, Route, useLocation, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import Chart from './Chart';
 import Price from './Price';
-
 interface Params {
 	coinId: string;
 }
@@ -51,6 +51,27 @@ const OverviewItem = styled.div`
 `;
 const Description = styled.p`
 	margin: 20px 0px;
+`;
+
+const Tabs = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 25px 0px;
+	gap: 10px;
+`;
+
+const Tab = styled.span<{ isActive: boolean }>`
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 400;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 7px 0px;
+	border-radius: 10px;
+	color: ${props => (props.isActive ? props.theme.accentColor : props.theme.textColor)};
+	a {
+		display: block;
+	}
 `;
 interface IinfoData {
 	id: string;
@@ -161,11 +182,17 @@ function Coin() {
 							<span>{price?.max_supply}</span>
 						</OverviewItem>
 					</Overview>
+
+					<Link to={`/${coinId}/chart`}>CharT</Link>
+					<Link to={`/${coinId}/price`}>PricE</Link>
+
 					<Switch>
-						<Route path={`/${coinId}/price`}>
+						<Route path={`/:coinId/price`}>
+							{/*이거는 변수 이용*/}
 							<Price />
 						</Route>
 						<Route path={`/${coinId}/chart`}>
+							{/*이거는 하드 코딩 위랑 아래 같음*/}
 							<Chart />
 						</Route>
 					</Switch>
